@@ -14,7 +14,12 @@ def inflation_view(request):
                 buf_rows = [float(x) for x in rows if (x != '') and (x != rows[0])]
                 buf_rows.insert(0,rows[0])
                 data_list.append(buf_rows)
-
+    for list in data_list:
+        if len(list) < 14:
+            list.insert(len(list)+1, '')
+            list.insert(len(list) + 1, '')
+            list.insert(len(list) + 1, '')
+            list.insert(len(list) + 1, '')
     head_list = ['Год','Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек', 'Суммарная']
 
     # чтение csv-файла и заполнение контекста

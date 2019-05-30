@@ -21,7 +21,6 @@
         <!-- Ваша логика -->
 
           <table>
-
             <tr>
               {% for head in head_list %}
               <th>{{ head }}</th>
@@ -31,7 +30,24 @@
           {% for row in data_list %}
               <tr>
               {% for data in row %}
-                  <td bgcolor="{% if data < 0 %} green {% endif %}">{{ data }}</td>
+                {% if data == ''%}
+                <td> - </td>
+                {% else %}{% if data < 0 %}
+                  <td bgcolor="green">
+                    {{ data }}
+                  </td>
+                {% else %}{% if data > 5 and forloop.counter != 14%}
+                  <td bgcolor="salmon">{{data}}</td>
+                {% else %}{% if data > 2 and data < 5 and forloop.counter != 14 %}
+                  <td bgcolor="darksalmon">{{data}}</td>
+                {% else %}{% if data > 1 and data < 2 and forloop.counter != 14 %}
+                  <td bgcolor="lightsalmon">{{data}}</td>
+                {% else %}{% if forloop.counter == 14%}
+                 <td bgcolor="grey">{{data}}</td>
+                {% else %}
+                 <td>{{data}}</td>
+                {% endif %}{% endif %}{% endif %}{% endif %}{% endif %}
+                {% endif %}
               {% endfor %}
               </tr>
           {% endfor %}
